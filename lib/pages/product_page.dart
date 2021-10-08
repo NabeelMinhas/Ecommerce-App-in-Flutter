@@ -50,39 +50,43 @@ class _product_pageState extends State<product_page> {
                     ),
                   );
                 },
-                child: Card(
-                  elevation: 10,
-                  child: ListTile(
-                    leading: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minWidth: 100,
-                        minHeight: 300,
-                        maxWidth: 104,
-                        maxHeight: 304,
+                child: Container(
+                  height: 100,
+                  child: Card(
+                    elevation: 10,
+                    child: ListTile(
+                      leading: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minWidth: 150,
+                          minHeight: 500,
+                          maxWidth: 154,
+                          maxHeight: 504,
+                        ),
+                        child: Image.network(
+                          data['image_name'],
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                      child: Image.network(
-                        data['image_name'],
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              '${data['title']}',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                      title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                '${data['title']}',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Rs ${data['price']}',
-                            style: TextStyle(
-                                color: Colors.red, fontWeight: FontWeight.bold),
-                          )
-                        ]),
-                    subtitle: Text(
-                      data['description'],
-                      overflow: TextOverflow.ellipsis,
+                            Text(
+                              'Rs ${data['price']}',
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ]),
+                      subtitle: Text(
+                        data['description'],
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
                 ),

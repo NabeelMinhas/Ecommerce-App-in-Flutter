@@ -24,111 +24,116 @@ class MyDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.pink,
             ),
-            child: Container(
-                child: Column(
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  child: (user != null)
-                      ? Column(
-                          children: [
-                            Text(
-                              'Hello ',
-                              style:
-                                  TextStyle(fontSize: 30, color: Colors.white),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              user.email,
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        )
-                      : FlatButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => login_Screen()));
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  color: Colors.red,
-                                ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(30))),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.login,
-                                    color: Colors.pink,
-                                    size: 30,
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Login ',
-                                    style: TextStyle(
-                                        color: Colors.pink, fontSize: 20),
-                                  ),
-                                ],
+            child: SingleChildScrollView(
+              child: Container(
+                  child: Column(
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    child: (user != null)
+                        ? Column(
+                            children: [
+                              Text(
+                                'Hello ',
+                                style: TextStyle(
+                                    fontSize: 30, color: Colors.white),
                               ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                user.email,
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          )
+                        : FlatButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => login_Screen()));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.red,
+                                  ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(30))),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.login,
+                                      color: Colors.pink,
+                                      size: 30,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'Login ',
+                                      style: TextStyle(
+                                          color: Colors.pink, fontSize: 20),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  FlatButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => home_page()));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.red,
                             ),
-                          )),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                FlatButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => home_page()));
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: Colors.red,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.home,
+                                color: Colors.blue,
+                                size: 30,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Go to home',
+                                style:
+                                    TextStyle(color: Colors.blue, fontSize: 20),
+                              ),
+                            ],
                           ),
-                          borderRadius: BorderRadius.all(Radius.circular(30))),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.home,
-                              color: Colors.blue,
-                              size: 30,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Go to home',
-                              style:
-                                  TextStyle(color: Colors.blue, fontSize: 20),
-                            ),
-                          ],
                         ),
-                      ),
-                    )),
-              ],
-            )),
+                      )),
+                ],
+              )),
+            ),
           ),
           Card(
             elevation: 10,
@@ -258,7 +263,13 @@ class MyDrawer extends StatelessWidget {
                         Icons.send,
                         color: Colors.white,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        FirebaseAuth.instance.signOut();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => home_page()));
+                      },
                     )
                   : Container(),
             ),

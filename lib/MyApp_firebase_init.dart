@@ -1,3 +1,5 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:pro/admin/Complete_Order.dart';
 import 'package:pro/admin/New_orders.dart';
@@ -13,7 +15,7 @@ import 'package:pro/pages/product_detail.dart';
 import 'package:pro/pages/product_page.dart';
 
 class MyApp extends StatefulWidget {
-  // const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -63,23 +65,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Color(0xFFeb51b7),
-        primarySwatch: Colors.pink,
+        // primarySwatch: Colors.pink,
       ),
       title: 'Home',
       home: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 120, // Set this height
-          flexibleSpace: Container(
-            decoration: BoxDecoration(),
-            color: Colors.orange,
-          ),
-        ),
-        // appBar: AppBar(
-
-        //   elevation: 0,
-        //   title: Text('Home'),
-        // ),
-        body: home_page(),
+        body: home_page_section(),
         drawer: MyDrawer(),
       ),
     );

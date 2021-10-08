@@ -13,7 +13,7 @@ class MyAdminDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
-    String name = user.email;
+    // String? name = user.email;
     return Drawer(
       // Add a ListView to the drawer. This ensures the user can scroll
       // through the options in the drawer if there isn't enough vertical
@@ -37,7 +37,7 @@ class MyAdminDrawer extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  name,
+                  user.email,
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 SizedBox(
