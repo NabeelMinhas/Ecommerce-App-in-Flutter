@@ -51,45 +51,110 @@ class _product_pageState extends State<product_page> {
                   );
                 },
                 child: Container(
-                  height: 100,
+                  margin: EdgeInsets.all(8.0),
                   child: Card(
-                    elevation: 10,
-                    child: ListTile(
-                      leading: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minWidth: 150,
-                          minHeight: 500,
-                          maxWidth: 154,
-                          maxHeight: 504,
-                        ),
-                        child: Image.network(
-                          data['image_name'],
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                '${data['title']}',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  product_detail(receivedMap: data),
+                            ));
+                      },
+                      child: Column(
+                        crossAxisAlignment:
+                            CrossAxisAlignment.stretch, // add this
+                        children: <Widget>[
+                          ClipRRect(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8.0),
+                              topRight: Radius.circular(8.0),
                             ),
-                            Text(
-                              'Rs ${data['price']}',
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ]),
-                      subtitle: Text(
-                        data['description'],
-                        overflow: TextOverflow.ellipsis,
+                            child: Image.network(data['image_name'],
+                                // width: 300,
+                                height: 350,
+                                fit: BoxFit.fill),
+                          ),
+                          ListTile(
+                            title: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      '${data['title']}',
+                                      style: TextStyle(
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Text(
+                                    'Rs ${data['price']}',
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                ]),
+                            //  Text('${data['title']}',
+                            //     style: TextStyle(
+                            //         color: Colors.red,
+                            //         fontSize: 30,
+                            //         fontWeight: FontWeight.bold)),
+                            subtitle: Text(
+                              data['description'],
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
+                // child: Container(
+                //   height: 100,
+                //   child: Card(
+                //     elevation: 10,
+                //     child: ListTile(
+                //       leading: ConstrainedBox(
+                //         constraints: BoxConstraints(
+                //           minWidth: 150,
+                //           minHeight: 500,
+                //           maxWidth: 154,
+                //           maxHeight: 504,
+                //         ),
+                //         child: Image.network(
+                //           data['image_name'],
+                //           fit: BoxFit.fill,
+                //         ),
+                //       ),
+                //       title: Row(
+                //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //           children: [
+                //             Expanded(
+                // child: Text(
+                //   '${data['title']}',
+                //   style: TextStyle(fontWeight: FontWeight.bold),
+                //               ),
+                //             ),
+                //             Text(
+                //               'Rs ${data['price']}',
+                //               style: TextStyle(
+                //                   color: Colors.red,
+                //                   fontWeight: FontWeight.bold),
+                //             )
+                //           ]),
+                // subtitle: Text(
+                //   data['description'],
+                //   overflow: TextOverflow.ellipsis,
+                // ),
+                //     ),
+                //   ),
+                // ),
               );
             }).toList(),
           );
