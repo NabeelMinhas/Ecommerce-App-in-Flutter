@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pro/authentication/login.dart';
+import 'package:pro/pages/catagories.dart';
 import 'package:pro/pages/home.dart';
 import 'package:pro/pages/product_page.dart';
 
@@ -186,7 +188,14 @@ class MyDrawer extends StatelessWidget {
                   Icons.send,
                   color: Colors.blue,
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => catagory(
+                                received: "Soaps & Shampo",
+                              )));
+                },
               ),
             ),
           ),
@@ -205,7 +214,14 @@ class MyDrawer extends StatelessWidget {
                   Icons.send,
                   color: Colors.blue,
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => catagory(
+                                received: 'Perfumes',
+                              )));
+                },
               ),
             ),
           ),
@@ -224,7 +240,14 @@ class MyDrawer extends StatelessWidget {
                   Icons.send,
                   color: Colors.blue,
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => catagory(
+                                received: 'Makeup',
+                              )));
+                },
               ),
             ),
           ),
@@ -243,7 +266,14 @@ class MyDrawer extends StatelessWidget {
                   Icons.send,
                   color: Colors.blue,
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => catagory(
+                                received: 'Others',
+                              )));
+                },
               ),
             ),
           ),
