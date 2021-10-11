@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pro/authentication/login.dart';
 import 'package:pro/pages/home.dart';
 
 import '../drawer.dart';
@@ -171,8 +172,8 @@ class _My_FormState extends State<My_Form> {
                   if (_formKey.currentState!.validate()) {
                     regis();
                     setState(() {});
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => home_page()));
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => login_Screen()));
 
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)

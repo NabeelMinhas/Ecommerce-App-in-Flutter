@@ -24,6 +24,14 @@ class _check_outState extends State<check_out> {
   CollectionReference order = FirebaseFirestore.instance.collection('orders');
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  Future<void> update_product() async {
+    return order
+        .doc('ABC123')
+        .update({'company': 'Stokes and Sons'})
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
+
   Future<void> add_order() async {
     final String name = _controller_name.text;
     final String phone = _controller_phone.text;

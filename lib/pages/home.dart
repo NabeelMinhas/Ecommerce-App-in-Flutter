@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pro/drawer.dart';
+import 'package:pro/pages/catagories.dart';
 import 'package:pro/pages/product_detail.dart';
 import 'package:pro/pages/product_page.dart';
 
@@ -78,7 +79,15 @@ class _home_page_sectionState extends State<home_page_section> {
                                   Column(
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      catagory(
+                                                        received: 'Makeup',
+                                                      )));
+                                        },
                                         icon: Image.asset(
                                             'assets/icons/cosmetics.png'),
                                         iconSize: 100,
@@ -93,7 +102,15 @@ class _home_page_sectionState extends State<home_page_section> {
                                   Column(
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      catagory(
+                                                        received: 'Perfumes',
+                                                      )));
+                                        },
                                         icon: Image.asset(
                                             'assets/icons/perfume.png'),
                                         iconSize: 100,
@@ -108,7 +125,16 @@ class _home_page_sectionState extends State<home_page_section> {
                                   Column(
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      catagory(
+                                                        received:
+                                                            "Soaps & Shampo",
+                                                      )));
+                                        },
                                         icon: Image.asset(
                                             'assets/icons/soap.png'),
                                         iconSize: 100,

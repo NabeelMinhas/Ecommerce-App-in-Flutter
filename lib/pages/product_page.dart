@@ -43,10 +43,13 @@ class _product_pageState extends State<product_page> {
 
               return GestureDetector(
                 onTap: () {
+                  print(document.id);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => product_detail(receivedMap: data),
+                      builder: (context) => product_detail(
+                        receivedMap: data,
+                      ),
                     ),
                   );
                 },
@@ -60,8 +63,9 @@ class _product_pageState extends State<product_page> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  product_detail(receivedMap: data),
+                              builder: (context) => product_detail(
+                                receivedMap: data,
+                              ),
                             ));
                       },
                       child: Column(
