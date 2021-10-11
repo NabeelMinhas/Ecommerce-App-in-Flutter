@@ -20,3 +20,9 @@ He can login after registration.
 The user can order products.
 
 ## File Structure of project
+As we know we have main focus on **lib folder** so i will prefer to discuss the lib folder file structure here.
+The lib folder further contain 3 folders
+- admin_folder (contain add_product, new_order, etc pages)
+- administrative_folder (contain login and registration.dart file) 
+- pages_folder (which contain general pages like home_screen,product page etc)
+- two open dart files also present in lib folder main file which is root of project and firebase initilization.dart file.
