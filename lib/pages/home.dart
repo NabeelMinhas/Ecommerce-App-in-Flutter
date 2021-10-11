@@ -250,7 +250,7 @@ class new_product extends StatefulWidget {
 
 class _new_productState extends State<new_product> {
   final Stream<QuerySnapshot> _usersStream =
-      FirebaseFirestore.instance.collection('products').limit(3).snapshots();
+      FirebaseFirestore.instance.collection('products').limit(4).snapshots();
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(

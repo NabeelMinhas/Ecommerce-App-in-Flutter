@@ -144,8 +144,7 @@ class _My_FormState extends State<My_Form> {
                 labelText: 'Confirm Password',
               ),
               validator: (value) {
-                if (value!.isEmpty &&
-                    (_controllerConPassword.text != _controllerPassword.text)) {
+                if (_controllerConPassword.text != _controllerPassword.text) {
                   return 'Password does not match ';
                 }
                 return null;
