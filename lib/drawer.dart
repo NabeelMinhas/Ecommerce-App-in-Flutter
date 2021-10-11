@@ -48,7 +48,7 @@ class MyDrawer extends StatelessWidget {
                               Text(
                                 user.email,
                                 style: TextStyle(
-                                    fontSize: 20, color: Colors.white),
+                                    fontSize: 15, color: Colors.white),
                               ),
                               SizedBox(
                                 height: 10,
