@@ -1,5 +1,5 @@
 // import 'dart:html';
-
+import 'package:date_format/date_format.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pro/drawer.dart';
@@ -24,20 +24,29 @@ class _check_outState extends State<check_out> {
   CollectionReference order = FirebaseFirestore.instance.collection('orders');
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<void> update_product() async {
-    return order
-        .doc('ABC123')
-        .update({'company': 'Stokes and Sons'})
-        .then((value) => print("User Updated"))
-        .catchError((error) => print("Failed to update user: $error"));
-  }
+  // Future<void> update_product() async {
+  //   return order
+  //       .doc('ABC123')
+  //       .update({'company': 'Stokes and Sons'})
+  //       .then((value) => print("User Updated"))
+  //       .catchError((error) => print("Failed to update user: $error"));
+  // }
 
   Future<void> add_order() async {
     final String name = _controller_name.text;
     final String phone = _controller_phone.text;
     final String address = _controller_address.text;
-
+    // DateTime date = new DateTime.now();
+    // DateTime justdate = new DateTime(date.year, date.month, date.day);
     // image_url = url;
+    // DateFormat.yMMMd().format(DateTime.now());
+    final formattedStr = formatDate(DateTime.now(), [
+      dd,
+      '/',
+      mm,
+      '/',
+      yyyy,
+    ]);
 
     // Call the user's CollectionReference to add a new user
     return await order
@@ -48,6 +57,7 @@ class _check_outState extends State<check_out> {
           'product_title': widget.checkout_receivedMap['title'],
           'price_per_piece': widget.checkout_receivedMap['price'],
           'salequantity': widget.checkout_receivedMap['salequantity'],
+          'order_date': formattedStr
         })
         .then((value) => print("order Added"))
         .catchError((error) => print("Failed to add user: $error"));

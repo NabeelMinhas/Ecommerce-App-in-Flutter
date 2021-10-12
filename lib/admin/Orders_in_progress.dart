@@ -25,6 +25,7 @@ class _Orders_in_progressState extends State<Orders_in_progress> {
     final String product_title = data['product_title'];
     final String price_per_piece = data['price_per_piece'];
     final String salequantity = data['salequantity'];
+    final String order_date = data['order_date'];
     // Call the user's CollectionReference to add a new user
     return await complete_orders
         .add({
@@ -34,6 +35,7 @@ class _Orders_in_progressState extends State<Orders_in_progress> {
           'product_title': product_title,
           'price_per_piece': price_per_piece,
           'salequantity': salequantity,
+          'order_date': order_date,
         })
         .then((value) => print("order Added to complete order"))
         .catchError((error) => print("Failed to add user: $error"));
@@ -51,6 +53,7 @@ class _Orders_in_progressState extends State<Orders_in_progress> {
     final String product_title = data['product_title'];
     final String price_per_piece = data['price_per_piece'];
     final String salequantity = data['salequantity'];
+    final String order_date = data['order_date'];
     // Call the user's CollectionReference to add a new user
     return await spam_order
         .add({
@@ -60,6 +63,7 @@ class _Orders_in_progressState extends State<Orders_in_progress> {
           'product_title': product_title,
           'price_per_piece': price_per_piece,
           'salequantity': salequantity,
+          'order_date': order_date
         })
         .then((value) => print("order Added to spam"))
         .catchError((error) => print("Failed to add user: $error"));

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:pro/admin/dashboard.dart';
 import 'package:pro/authentication/login.dart';
 import 'package:pro/pages/catagories.dart';
 import 'package:pro/pages/home.dart';
@@ -304,6 +305,36 @@ class MyDrawer extends StatelessWidget {
                   : Container(),
             ),
           ),
+          Container(
+            child: ((user.email != null) &&
+                    (user.email == 'nabeelshafiq223@gmail.com'))
+                ? Card(
+                    elevation: 10,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListTile(
+                        title: Text('Dashboard',
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 20)),
+                        leading: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.pink,
+                        ),
+                        trailing: Icon(
+                          Icons.send,
+                          color: Colors.blue,
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => dashboard()));
+                        },
+                      ),
+                    ),
+                  )
+                : Container(),
+          )
         ],
       ),
     );
