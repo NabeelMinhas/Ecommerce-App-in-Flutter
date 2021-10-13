@@ -23,8 +23,9 @@ class _add_productsState extends State<add_products> {
 }
 
 class product_form extends StatefulWidget {
-  product_form({Key? key}) : super(key: key);
-
+  product_form({Key? key, this.receivedMapEdit, this.doc}) : super(key: key);
+  Map<String, dynamic>? receivedMapEdit;
+  String? doc;
   @override
   _product_formState createState() => _product_formState();
 }
@@ -62,7 +63,11 @@ class _product_formState extends State<product_form> {
         .getDownloadURL();
     url = downloadURL;
     print(downloadURL);
-    addUser();
+    if (widget.receivedMapEdit == null) {
+      addUser();
+    } else {
+      updateUser();
+    }
   }
 
   //derop down button assets strat
@@ -117,10 +122,54 @@ class _product_formState extends State<product_form> {
           'quantity': quantity,
           'catagory': catagory,
           'image_name': url,
-          'salequantity': salequantity
+          'salequantity': salequantity,
         })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
+  }
+
+//load values for edit
+  void load_values_for_edit() {
+    _controllerTitle.text = widget.receivedMapEdit!['title'];
+    _controllerPrice.text = widget.receivedMapEdit!['price'];
+    _controllerQuantity.text = widget.receivedMapEdit!['quantity'];
+    _controllerDescription.text = widget.receivedMapEdit!['description'];
+    _currentItemSelected = widget.receivedMapEdit!['catagory'];
+  }
+
+  CollectionReference product_edit =
+      FirebaseFirestore.instance.collection('products');
+
+  Future<void> updateUser() {
+    title = _controllerTitle.text;
+    price = _controllerPrice.text;
+    description = _controllerDescription.text;
+    quantity = _controllerQuantity.text;
+    catagory = _currentItemSelected;
+
+    return product_edit
+        .doc(widget.doc)
+        .update({
+          'title': title,
+          'price': price,
+          'description': description,
+          'quantity': quantity,
+          'catagory': catagory,
+          'image_name': url,
+          // 'salequantity': salequantity,
+        })
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
+
+  @override
+  void initState() {
+    if (widget.receivedMapEdit != null) {
+      load_values_for_edit();
+      print(widget.doc);
+    }
+
+    super.initState();
   }
 
   @override
@@ -294,7 +343,8 @@ class _product_formState extends State<product_form> {
                               // It returns true if the form is valid, otherwise returns false
                               if (_formKey.currentState!.validate() &&
                                   _image != null) {
-                                uploadFile(); //upload image to firebase storage
+                                uploadFile();
+                                //upload image to firebase storage
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(

@@ -273,7 +273,10 @@ class _new_productState extends State<new_product> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => product_detail(receivedMap: data),
+                    builder: (context) => product_detail(
+                      receivedMap: data,
+                      doc_id: document.id,
+                    ),
                   ),
                 );
               },

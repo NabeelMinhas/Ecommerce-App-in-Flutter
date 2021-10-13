@@ -49,6 +49,7 @@ class _product_pageState extends State<product_page> {
                     MaterialPageRoute(
                       builder: (context) => product_detail(
                         receivedMap: data,
+                        doc_id: document.id,
                       ),
                     ),
                   );
@@ -65,6 +66,7 @@ class _product_pageState extends State<product_page> {
                             MaterialPageRoute(
                               builder: (context) => product_detail(
                                 receivedMap: data,
+                                doc_id: document.id,
                               ),
                             ));
                       },

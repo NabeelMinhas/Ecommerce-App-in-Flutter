@@ -1,8 +1,15 @@
 // import 'dart:html';
 
+// import 'dart:html';
+
+// import 'dart:html';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:number_inc_dec/number_inc_dec.dart';
 import 'package:pro/admin/add_products.dart';
+import 'package:pro/admin/dashboard.dart';
 import 'package:pro/drawer.dart';
 import 'package:pro/pages/cart_page.dart';
 import 'package:pro/pages/checkout.dart';
@@ -10,8 +17,10 @@ import 'package:pro/pages/home.dart';
 import 'package:pro/pages/product_page.dart';
 
 class product_detail extends StatefulWidget {
-  product_detail({Key? key, required this.receivedMap}) : super(key: key);
+  product_detail({Key? key, required this.receivedMap, required this.doc_id})
+      : super(key: key);
   Map<String, dynamic> receivedMap;
+  String doc_id;
 
   @override
   _product_detailState createState() => _product_detailState();
@@ -24,6 +33,54 @@ class _product_detailState extends State<product_detail> {
   // List<order> orderlist = [];
   List<Map<String, dynamic>> lst = [];
   String textvalue = '1';
+  User? user = FirebaseAuth.instance.currentUser;
+//delete a document from firebase
+  CollectionReference product_delete =
+      FirebaseFirestore.instance.collection('products');
+  Future<void> deleteProduct(String doc_id) {
+    return product_delete
+        .doc(doc_id)
+        .delete()
+        .then((value) => print("product Deleted"))
+        .catchError((error) => print("Failed to delete user: $error"));
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Warning'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Are You Want to delete this product permenantly.'),
+                // Text('Would you like to approve of this message?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('No'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Yes'),
+              onPressed: () {
+                deleteProduct(widget.doc_id);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => home_page()));
+                // Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -290,7 +347,107 @@ class _product_detailState extends State<product_detail> {
                       ],
                     ),
                   ),
-                ))
+                )),
+            SizedBox(
+              height: 10,
+            ),
+
+            //edit product section
+            Container(
+              child: ((user != null) &&
+                      (user!.email == 'nabeelshafiq223@gmail.com'))
+                  ? FlatButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => product_form(
+                                      receivedMapEdit: widget.receivedMap,
+                                      doc: widget.doc_id,
+                                    )));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.pink,
+                            border: Border.all(
+                              color: Colors.red,
+                            ),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Edit Product',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ))
+                  : Container(),
+              // for spacing
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            //edit product section
+            Container(
+              child: ((user != null) &&
+                      (user!.email == 'nabeelshafiq223@gmail.com'))
+                  ? FlatButton(
+                      onPressed: () {
+                        _showMyDialog();
+                        // deleteProduct(widget.doc_id);
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => home_page()));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.pink,
+                            border: Border.all(
+                              color: Colors.red,
+                            ),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Delete Product',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ))
+                  : Container(),
+              // for spacing
+            )
           ],
         ),
       ),

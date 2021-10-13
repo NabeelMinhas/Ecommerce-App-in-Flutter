@@ -56,7 +56,10 @@ class _catagoryState extends State<catagory> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => product_detail(receivedMap: data),
+                      builder: (context) => product_detail(
+                        receivedMap: data,
+                        doc_id: document.id,
+                      ),
                     ),
                   );
                 },
@@ -70,8 +73,10 @@ class _catagoryState extends State<catagory> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  product_detail(receivedMap: data),
+                              builder: (context) => product_detail(
+                                receivedMap: data,
+                                doc_id: document.id,
+                              ),
                             ));
                       },
                       child: Column(

@@ -13,7 +13,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
-    // String? name = user.email;
+
     return Drawer(
       // Add a ListView to the drawer. This ensures the user can scroll
       // through the options in the drawer if there isn't enough vertical
@@ -48,6 +48,7 @@ class MyDrawer extends StatelessWidget {
                               ),
                               Text(
                                 user.email,
+                                // 'hell',
                                 style: TextStyle(
                                     fontSize: 15, color: Colors.white),
                               ),
@@ -306,7 +307,7 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           Container(
-            child: ((user.email != null) &&
+            child: ((user != null) &&
                     (user.email == 'nabeelshafiq223@gmail.com'))
                 ? Card(
                     elevation: 10,
