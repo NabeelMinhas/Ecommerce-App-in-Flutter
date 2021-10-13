@@ -21,6 +21,9 @@ class _Spam_orderState extends State<Spam_order> {
     final String price_per_piece = data['price_per_piece'];
     final String salequantity = data['salequantity'];
     final String order_date = data['order_date'];
+
+    final String order_month = data['order_month'];
+    final String order_year = data['order_year'];
     // Call the user's CollectionReference to add a new user
     return await order
         .add({
@@ -30,7 +33,9 @@ class _Spam_orderState extends State<Spam_order> {
           'product_title': product_title,
           'price_per_piece': price_per_piece,
           'salequantity': salequantity,
-          'order_date': order_date
+          'order_date': order_date,
+          'order_month': order_month,
+          'order_year': order_year
         })
         .then((value) => print("order Added"))
         .catchError((error) => print("Failed to add user: $error"));

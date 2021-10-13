@@ -4,7 +4,7 @@ import 'package:pro/admin/Complete_Order.dart';
 import 'package:pro/admin/New_orders.dart';
 import 'package:pro/admin/Orders_in_progress.dart';
 import 'package:pro/admin/Spam_order.dart';
-import 'package:pro/admin/User_feedback.dart';
+import 'package:pro/admin/Some_Statistics.dart';
 // import 'package:pro/admin/add_products.dart';
 import 'package:pro/admin/add_products.dart';
 import 'package:pro/authentication/register.dart';
@@ -142,7 +142,7 @@ class SelectCard extends StatelessWidget {
         } else if (choice.title == 'User Feedback') {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => User_feedback()),
+            MaterialPageRoute(builder: (context) => Statistics()),
           );
         }
       },

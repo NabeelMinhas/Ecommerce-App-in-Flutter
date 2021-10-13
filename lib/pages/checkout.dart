@@ -47,7 +47,20 @@ class _check_outState extends State<check_out> {
       '/',
       yyyy,
     ]);
-
+    final order_month = formatDate(DateTime.now(), [
+      // dd,
+      // '/',
+      mm,
+      // '/',
+      // yyyy,
+    ]);
+    final order_year = formatDate(DateTime.now(), [
+      // dd,
+      // '/',
+      // mm,
+      // '/',
+      yyyy,
+    ]);
     // Call the user's CollectionReference to add a new user
     return await order
         .add({
@@ -57,7 +70,9 @@ class _check_outState extends State<check_out> {
           'product_title': widget.checkout_receivedMap['title'],
           'price_per_piece': widget.checkout_receivedMap['price'],
           'salequantity': widget.checkout_receivedMap['salequantity'],
-          'order_date': formattedStr
+          'order_date': formattedStr,
+          'order_month': order_month,
+          'order_year': order_year
         })
         .then((value) => print("order Added"))
         .catchError((error) => print("Failed to add user: $error"));
