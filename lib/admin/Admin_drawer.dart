@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pro/admin/Complete_Order.dart';
 import 'package:pro/admin/New_orders.dart';
 import 'package:pro/admin/Orders_in_progress.dart';
+import 'package:pro/admin/Some_Statistics.dart';
 import 'package:pro/admin/Spam_order.dart';
 import 'package:pro/admin/add_products.dart';
 import 'package:pro/pages/home.dart';
@@ -199,7 +200,7 @@ class MyAdminDrawer extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
-                title: Text('Feedback',
+                title: Text('Statistics',
                     style: TextStyle(color: Colors.black, fontSize: 20)),
                 leading: Icon(
                   Icons.arrow_forward,
@@ -211,7 +212,7 @@ class MyAdminDrawer extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => New_orders()));
+                      MaterialPageRoute(builder: (context) => Statistics()));
                 },
               ),
             ),

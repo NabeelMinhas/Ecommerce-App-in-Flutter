@@ -124,7 +124,7 @@ class _product_formState extends State<product_form> {
           'image_name': url,
           'salequantity': salequantity,
         })
-        .then((value) => print("User Added"))
+        .then((value) => print("product upload"))
         .catchError((error) => print("Failed to add user: $error"));
   }
 

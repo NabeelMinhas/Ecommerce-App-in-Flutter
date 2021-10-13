@@ -6,9 +6,11 @@ import 'package:pro/drawer.dart';
 import 'package:pro/pages/home.dart';
 
 class check_out extends StatefulWidget {
-  check_out({Key? key, required this.checkout_receivedMap}) : super(key: key);
+  check_out(
+      {Key? key, required this.checkout_receivedMap, required this.docu_id})
+      : super(key: key);
   Map<String, dynamic> checkout_receivedMap;
-  // String salequantity;
+  String docu_id;
   @override
   _check_outState createState() => _check_outState();
 }
@@ -24,13 +26,18 @@ class _check_outState extends State<check_out> {
   CollectionReference order = FirebaseFirestore.instance.collection('orders');
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  // Future<void> update_product() async {
-  //   return order
-  //       .doc('ABC123')
-  //       .update({'company': 'Stokes and Sons'})
-  //       .then((value) => print("User Updated"))
-  //       .catchError((error) => print("Failed to update user: $error"));
-  // }
+  CollectionReference product =
+      FirebaseFirestore.instance.collection('products');
+  Future<void> update_product_quantity() async {
+    String quan = (int.parse(widget.checkout_receivedMap['quantity']) -
+            int.parse(widget.checkout_receivedMap['salequantity']))
+        .toString();
+    return product
+        .doc(widget.docu_id)
+        .update({'quantity': quan})
+        .then((value) => print("Product Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
 
   Future<void> add_order() async {
     final String name = _controller_name.text;
@@ -316,6 +323,7 @@ class _check_outState extends State<check_out> {
                                                 if (_formKey.currentState!
                                                     .validate()) {
                                                   add_order();
+                                                  update_product_quantity();
                                                   Navigator.push(
                                                       context,
                                                       MaterialPageRoute(

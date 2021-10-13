@@ -238,9 +238,11 @@ class _New_ordersState extends State<New_orders> {
                                       'User Name:',
                                       style: TextStyle(fontSize: 20),
                                     ),
-                                    Text(
-                                      data['name'],
-                                      style: TextStyle(fontSize: 20),
+                                    Expanded(
+                                      child: Text(
+                                        data['name'],
+                                        style: TextStyle(fontSize: 20),
+                                      ),
                                     )
                                   ],
                                 ),

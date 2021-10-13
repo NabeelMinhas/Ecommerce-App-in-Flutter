@@ -122,12 +122,12 @@ class _cart_pageState extends State<cart_page> {
                                   children: [
                                     ElevatedButton(
                                       onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => check_out(
-                                                    checkout_receivedMap: widget
-                                                        .lst_cart[index])));
+                                        // Navigator.push(
+                                        //     context,
+                                        //     MaterialPageRoute(
+                                        //         builder: (context) => check_out(
+                                        //             checkout_receivedMap: widget
+                                        //                 .lst_cart[index])));
                                       },
                                       child: Text(
                                         'choose Order',

@@ -273,7 +273,7 @@ class MyDrawer extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => catagory(
-                                received: 'Others',
+                                received: 'others',
                               )));
                 },
               ),

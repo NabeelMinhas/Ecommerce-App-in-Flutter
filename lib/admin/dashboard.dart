@@ -75,7 +75,7 @@ const List<Choice> choices = const <Choice>[
   const Choice(title: 'Complete Order', icon: Icons.star_outline_sharp),
   const Choice(title: 'Spam Orders', icon: Icons.dangerous_outlined),
   const Choice(title: 'Add product', icon: Icons.add),
-  const Choice(title: 'User Feedback', icon: Icons.message_outlined)
+  const Choice(title: 'Statistics', icon: Icons.message_outlined)
 ];
 
 class __bodyState extends State<_body> {
@@ -139,7 +139,7 @@ class SelectCard extends StatelessWidget {
             context,
             MaterialPageRoute(builder: (context) => add_products()),
           );
-        } else if (choice.title == 'User Feedback') {
+        } else if (choice.title == 'Statistics') {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => Statistics()),

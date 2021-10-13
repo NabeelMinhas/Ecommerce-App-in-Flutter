@@ -1,9 +1,3 @@
-// import 'dart:html';
-
-// import 'dart:html';
-
-// import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -318,7 +312,9 @@ class _product_detailState extends State<product_detail> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => check_out(
-                              checkout_receivedMap: widget.receivedMap)));
+                                checkout_receivedMap: widget.receivedMap,
+                                docu_id: widget.doc_id,
+                              )));
                 },
                 child: Container(
                   decoration: BoxDecoration(
